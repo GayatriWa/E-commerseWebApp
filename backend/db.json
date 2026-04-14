@@ -28,12 +28,16 @@
       "price": 109.95,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
-      "rating": {
-        "rate": 3.9,
-        "count": 120
-      }
+      "image": "https://i.pravatar.cc/"
+    },
+    {
+      "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
+      "title": "jhfbjkds",
+      "price": "566",
+      "description": "vnjdnvknjflkewnmd,",
+      "category": "cbjhdbkjbjk",
+      "id": "Tnpx2le0z4k"
     }
   ],
-  "carts": [],
-  "$schema": "./node_modules/json-server/schema.json"
+  "carts": []
 }
