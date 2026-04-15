@@ -14,7 +14,7 @@ const App = () => {
      dispatch(asyncloadproduct())
   },[])
   return (
-    <div className='w-screen h-screen text-white front-thin bg-gray-800 px-[10%]'>
+    <div className='overflow-auto w-screen h-screen text-white front-thin bg-gray-800 px-[10%]'>
       <Nav />
       <Mainroutes/>
     </div>
