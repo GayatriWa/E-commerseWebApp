@@ -10,9 +10,11 @@ import { asyncdeleteproduct } from '../../store/actions/productActions';
 
 const ProductDetail = () => {
   const {id} = useParams();
-  const products = useSelector((state)=>state.productReducer.products)
-  const product = products?.find(product => product.id === id)
-  console.log(product)
+  // const {productReducer : {products}, userReducer:{users},} = useSelector((state)=>state)
+  const products = useSelector(state => state.productReducer.products)
+const user = useSelector(state => state.userReducer.user)
+  const product = products?.find(product => product.id === Number(id))
+  console.log(products, user)
 
 const { register, reset, handleSubmit } = useForm({
 
