@@ -13,7 +13,7 @@ const ProductDetail = () => {
   // const {productReducer : {products}, userReducer:{users},} = useSelector((state)=>state)
   const products = useSelector(state => state.productReducer.products)
 const user = useSelector(state => state.userReducer.user)
-  const product = products?.find(product => product.id === Number(id))
+  const product = products?.find(product => String(product.id) === String(id))
   console.log(products, user)
 
 const { register, reset, handleSubmit } = useForm({
@@ -64,7 +64,7 @@ const { register, reset, handleSubmit } = useForm({
 
     </div>
     <hr></hr>
-
+    {user && user?.isAdmin && (
     <form onSubmit={handleSubmit(UpdateProductHandler)}
        className="w-ull flex flex-col justify-start items-start">
 
@@ -97,10 +97,11 @@ const { register, reset, handleSubmit } = useForm({
          <button type='button' onClick={DeleteHandler} className='mt-5 px-4 py-2 bg-red-400 rounded'>Delete product</button>
 
       </form>
-
-      
+    )}
+    
       </>
   ) : "loading ..."
 }
+
 
 export default ProductDetail
