@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Products = () => {
   const products=useSelector((state)=> state.productReducer.products)
-  console.log(products)
+  // console.log(products)
 
 
   const renderproduct = products.map((product)=>{

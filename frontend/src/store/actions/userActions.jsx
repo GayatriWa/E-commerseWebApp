@@ -23,25 +23,33 @@ export const asynclogoutuser = () => async (dispatch) => {
   }
 };
 
-export const asyncloginuser = (user) =>async(dispatch, getState)=>{
-     try {
-        const {data} = await axios.get(`/users?email=${user.email}&password=${user.password}`)
-          if (data.length === 0) {
-      console.log("Invalid credentials");
+export const asyncloginuser = (user) => async (dispatch) => {
+  try {
+    const { data } = await axios.get("/users");
+
+    const foundUser = data.find(
+      (u) =>
+        u.email.trim().toLowerCase() === user.email.trim().toLowerCase()
+    );
+
+    if (!foundUser) {
+      console.log("User not found");
       return;
     }
 
-    const loggedInUser = data[0];
-
-    // ✅ save in localStorage
-    localStorage.setItem("user", JSON.stringify(loggedInUser));
-
-    // 🔥 IMPORTANT: update Redux
-    dispatch(loaduser(loggedInUser));
-    } catch (error) {
-        console.log(error)
+    if (foundUser.password !== user.password) {
+      console.log("Invalid password");
+      return;
     }
-}
+
+    localStorage.setItem("user", JSON.stringify(foundUser));
+    dispatch(loaduser(foundUser));
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export const asyncregisteruser = (user) => async (dispatch,getState) =>{
     try {
@@ -53,3 +61,29 @@ export const asyncregisteruser = (user) => async (dispatch,getState) =>{
     }
 }
 
+export const asyncupdateuser =(user) => async(dispatch,getState) =>{
+    try {
+        const {data} = await axios.patch(`/users/${user.id}`, user)
+        console.log(data)
+        localStorage.setItem("user", JSON.stringify(data));
+            dispatch(loaduser(data));
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const asyncdeleteuser = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/users/${id}`);   // ✅ use id
+
+    // clear localStorage
+    localStorage.removeItem("user");
+
+    // update redux
+    dispatch(loaduser(null));
+
+  } catch (error) {
+    console.log(error);
+  }
+};

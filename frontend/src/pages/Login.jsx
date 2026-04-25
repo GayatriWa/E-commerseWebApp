@@ -11,8 +11,9 @@ const Login = () => {
   const navigate = useNavigate()
 
   const LoginHandler = (user) =>{
-    console.log(user)
+    // console.log(user)
     dispatch(asyncloginuser(user))
+    navigate("/")
   }
 
   return (
